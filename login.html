@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Treasure Raider</title>
+
+
+    <script type="text/javascript" src="https://www.google.com/jsapi?key=ABQIAAAAd0z5bdC-c86830NY5Jg2nBTD8g82gL3xrXY2_Wids598ntq44RTwiuTVv9ibPQDsSPMQP7XCvrZsOA"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.0/jquery.min.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.12/jquery-ui.min.js"></script>
+    <link href='http://fonts.googleapis.com/css?family=Slackey' rel='stylesheet' type='text/css'>
+
+    <link type="text/css" href="/static/css/jquery_ui/ui-lightness/jquery-ui-1.8.12.custom.css" rel="stylesheet" />
+
+
+    <!--		<script type="text/javascript" src="/static/js/jquery/jquery-1.6.min.js"></script>
+         <link type="text/css" href="/static/css/jquery_ui/ui-lightness/jquery-ui-1.8.12.custom.css" rel="stylesheet" />
+          <script type="text/javascript" src="/static/js/jquery_ui/js/jquery-ui-1.8.12.custom.min.js"></script> -->
+
+    <script type="text/javascript" src="/static/js/jquery_plugins/jquery.cookie.js"></script>
+    <link rel="stylesheet" type="text/css" href="/static/css/YUI_reset.css"/>
+    <link rel="stylesheet" type="text/css" href="/static/css/game.css"/>
+
+
+</head>
+<body>
+<div id="general_message_box" style="display:none;">
+    <p id="message_paragraph">Oops, where's the message?</p>
+</div>
+<div id="tutorial_message_box" style="display:none;">
+</div>
+
+<!-- leave this one and only fb root here! -->
+<div id="fb-root"></div>
+<div id="main">
+    {% block body %}
+    {% endblock %}
+</div>
+</body>
+
+<script type="text/javascript">
+    window.fbAsyncInit = function() {
+        FB.init({appId: '{{ facebook_api_key }}', status: true, cookie: true,
+            xfbml: true});
+        FB.Event.subscribe('auth.login', function(response) {
+            //alert('got login event');
+            //window.location.href = '/auth/facebook/?continue=%2F';
+        });
+    };
+
+    (function() {
+        var e = document.createElement('script'); e.async = true;
+        e.src = document.location.protocol +
+                '//connect.facebook.net/en_US/all.js';
+        document.getElementById('fb-root').appendChild(e);
+    }());
+
+</script>
+</html>
+
